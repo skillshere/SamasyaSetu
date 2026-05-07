@@ -23,7 +23,7 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-      getCurrentUser(); // ← await lagao
+      await getCurrentUser(); // ← await lagao
       navigate("/");
     } catch (error) {
       setError(error.response?.data?.message || "Error logging in");
