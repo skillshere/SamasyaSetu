@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
 const dotenv = require('dotenv');
+dotenv.config();
 const connectDb = require('./config/db');
 const userRoutes = require('./routes/userAuth');
 const authRoutes = require('./routes/authRoutes');

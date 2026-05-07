@@ -1,6 +1,7 @@
 const Issue = require("../models/Issue");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const { sendIssueEmail } = require("../utils/email");
 const submitIssue = async (req, res) => {
   try {
     // Token se user id lo
@@ -9,6 +10,7 @@ const submitIssue = async (req, res) => {
       return res.status(401).json({ message: "Not authorized" });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
 
     const { title, description, category, address, state, city } = req.body;
 
@@ -22,9 +24,8 @@ const submitIssue = async (req, res) => {
       image: req.file ? req.file.path : "", // ← cloudinary ya local
       userId: decoded.id,
     });
-
+    await sendIssueEmail(issue, user.email);
     res.status(201).json({ message: "Issue submitted successfully", issue });
-    console.log("Issue submitted successfully:", issue);
   } catch (error) {
     console.log("Issue error:", error.message);
     res.status(500).json({ message: error.message });
