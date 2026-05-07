@@ -24,7 +24,7 @@ const submitIssue = async (req, res) => {
       image: req.file ? req.file.path : "", // ← cloudinary ya local
       userId: decoded.id,
     });
-    await sendIssueEmail(issue, user.email);
+    sendIssueEmail(issue, user.email);
     res.status(201).json({ message: "Issue submitted successfully", issue });
   } catch (error) {
     console.log("Issue error:", error.message);
