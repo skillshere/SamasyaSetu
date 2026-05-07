@@ -2,7 +2,7 @@ import React, { createContext} from 'react';
 export const authDataContext = createContext();
 
 const AuthContext = ({ children }) => {
-    const serverUrl ='http://localhost:5000';
+    const serverUrl ='https://samasyasetu.onrender.com';
     const value = {
         serverUrl,
     }
