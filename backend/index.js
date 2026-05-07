@@ -14,7 +14,7 @@ const path = require('path');
 
 dotenv.config();
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'https://samasya-setu.vercel.app', 
     credentials: true
   }));
 app.use(cookieParser());
