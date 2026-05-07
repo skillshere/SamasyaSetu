@@ -21,10 +21,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get('/', (req, res) => {
+  res.send('SamasyaSetu Backend is running! 🚀')
+})
 app.use('/api/user',userRoutes);
 app.use('/api/auth',authRoutes);
 app.use('/api/issue',issueRoutes);
 app.use('/api/profile',profileRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
