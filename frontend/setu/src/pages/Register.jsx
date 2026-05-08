@@ -3,7 +3,7 @@ import axios from "axios";
 import { authDataContext } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/samasya_setu_icon_only.svg";
-
+import { IoMdEye, IoMdEyeOff } from "react-icons/io"; // ← Add kiya
 
 const Register = () => {
   const { serverUrl } = useContext(authDataContext);
@@ -15,40 +15,17 @@ const Register = () => {
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // ← Add kiya
+
   const states = [
-    "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Assam",
-    "Bihar",
-    "Chhattisgarh",
-    "Goa",
-    "Gujarat",
-    "Haryana",
-    "Himachal Pradesh",
-    "Jharkhand",
-    "Karnataka",
-    "Kerala",
-    "Madhya Pradesh",
-    "Maharashtra",
-    "Manipur",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Odisha",
-    "Punjab",
-    "Rajasthan",
-    "Sikkim",
-    "Tamil Nadu",
-    "Telangana",
-    "Tripura",
-    "Uttar Pradesh",
-    "Uttarakhand",
-    "West Bengal",
-    "Delhi",
-    "Jammu & Kashmir",
-    "Ladakh",
-    "Chandigarh",
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
+    "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya",
+    "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim",
+    "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand",
+    "West Bengal", "Delhi", "Jammu & Kashmir", "Ladakh", "Chandigarh",
   ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -68,8 +45,8 @@ const Register = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-zinc-900 ">
-      <div className="bg-slate-900 w-full flex items-center ">
+    <div className="w-full min-h-screen bg-zinc-900">
+      <div className="bg-slate-900 w-full flex items-center">
         <img src={logo} alt="" className="w-20 h-15" />
         <div className="flex flex-col">
           <h1 className="text-xl font-bold text-white decoration-zinc-400 underline">
@@ -84,7 +61,7 @@ const Register = () => {
         >
           <p className="text-white text-sm font-bold text-center">
             <span className="text-green-600">Welcome</span> to{" "}
-            <span className="text-orange-500">SamasyaSetu </span>{" "}
+            <span className="text-orange-500">SamasyaSetu</span>
           </p>
           <h1 className="text-white text-2xl font-bold text-center">
             Register your account
@@ -94,7 +71,6 @@ const Register = () => {
 
           <input
             type="text"
-            name="Username"
             placeholder="Username"
             onChange={(e) => setUserName(e.target.value)}
             value={username}
@@ -103,45 +79,49 @@ const Register = () => {
           />
           <input
             type="email"
-            name="email"
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white"
             required
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white "
-            required
-          />
+
+          {/* Password with Eye Toggle */}
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white w-full pr-10"
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white cursor-pointer text-xl"
+            >
+              {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+            </span>
+          </div>
+
           <select
-            name="state"
             onChange={(e) => setState(e.target.value)}
             value={state}
             className="p-2 rounded bg-zinc-700 text-white outline-none w-full cursor-pointer"
-            style={{ maxHeight: "45px" }}
             required
           >
             <option value="">-- Select State --</option>
             {states.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
+              <option key={s} value={s}>{s}</option>
             ))}
           </select>
 
           <input
             type="text"
-            name="city"
             placeholder="City"
             onChange={(e) => setCity(e.target.value)}
             value={city}
-            className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white "
+            className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white"
             required
           />
 
@@ -154,7 +134,7 @@ const Register = () => {
           </button>
 
           <p className="text-zinc-400 text-sm text-center">
-            Already have an account ?{" "}
+            Already have an account?{" "}
             <span
               onClick={() => navigate("/login")}
               className="text-blue-400 cursor-pointer"

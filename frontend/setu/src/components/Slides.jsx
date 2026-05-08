@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import mcf from "../assets/drainage_img.png";
 import mcf2 from "../assets/mcf_img.png";
 import mcf3 from "../assets/track_image.png";
+import { useNavigate } from "react-router-dom";
 
 const slides = [
   {
@@ -29,6 +30,7 @@ const slides = [
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
+  const navigate = useNavigate(); // ← Andar move kiya
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,7 +43,10 @@ const Slider = () => {
   const next = () => setCurrent((current + 1) % slides.length);
 
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: '480px' }}>
+    <div
+      className="relative w-full overflow-hidden"
+      style={{ height: '320px' }} // ← Mobile ke liye chota kiya
+    >
 
       {/* Background Image */}
       <div
@@ -53,49 +58,48 @@ const Slider = () => {
         }}
       />
 
-      {/* Gradient Overlay — left se text readable ho */}
+      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-      {/* Content — left aligned, professional */}
-      <div className="absolute inset-0 flex flex-col justify-center px-12 md:px-20 max-w-2xl">
-        
+      {/* Content — padding km kiya mobile ke liye */}
+      <div className="absolute inset-0 flex flex-col justify-center px-5 md:px-20 max-w-2xl">
+
         {/* Badge */}
-        <span className="inline-block bg-[#0f6e56] text-white text-xs font-semibold px-3 py-1 rounded-full mb-4 w-fit tracking-wide">
+        <span className="inline-block bg-[#0f6e56] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 w-fit tracking-wide">
           {slides[current].badge}
         </span>
 
-        {/* Title */}
-        <h2 className="text-white text-4xl md:text-5xl font-bold leading-tight mb-4 drop-shadow-lg">
+        {/* Title — size chota mobile pe */}
+        <h2 className="text-white text-2xl md:text-5xl font-bold leading-tight mb-2 drop-shadow-lg">
           {slides[current].title}
         </h2>
 
-        {/* Description */}
-        <p className="text-zinc-200 text-base md:text-lg leading-relaxed mb-8 max-w-md">
+        {/* Description — mobile pe chota */}
+        <p className="text-zinc-200 text-sm md:text-lg leading-relaxed mb-4 max-w-md">
           {slides[current].desc}
         </p>
 
         {/* Buttons */}
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-3 flex-wrap">
           <button
-            onClick={() => {}}
-            className="bg-[#0f6e56] hover:bg-[#085041] text-white px-7 py-3 rounded-lg text-sm font-semibold transition-all"
+            onClick={() => navigate('/issue')}
+            className="bg-[#0f6e56] hover:bg-[#085041] text-white px-5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all"
           >
             + Report Problem
           </button>
           <button
-            className="bg-white/10 hover:bg-white/20 text-white border border-white/40 px-7 py-3 rounded-lg text-sm font-semibold transition-all backdrop-blur-sm"
+            onClick={() => navigate('/about')}
+            className="bg-white/10 hover:bg-white/20 text-white border border-white/40 px-5 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all backdrop-blur-sm"
           >
             Learn More
           </button>
         </div>
       </div>
 
-
-
       {/* Prev Button */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
       >
         ‹
       </button>
@@ -103,13 +107,13 @@ const Slider = () => {
       {/* Next Button */}
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
       >
         ›
       </button>
 
-      {/* Dots — bottom left */}
-      <div className="absolute bottom-6 left-12 md:left-20 flex gap-2 items-center">
+      {/* Dots */}
+      <div className="absolute bottom-4 left-5 md:left-20 flex gap-2 items-center">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -121,7 +125,7 @@ const Slider = () => {
         ))}
       </div>
 
-      {/* Progress bar — bottom */}
+      {/* Progress bar */}
       <div className="absolute bottom-0 left-0 w-full h-0.5 bg-white/10">
         <div
           className="h-full bg-[#0f6e56] transition-all duration-300"

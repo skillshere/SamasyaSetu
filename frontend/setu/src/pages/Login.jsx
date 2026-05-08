@@ -4,6 +4,7 @@ import { authDataContext } from "../../context/authContext";
 import { userDataContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/samasya_setu_icon_only.svg";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const Login = () => {
   const { serverUrl } = useContext(authDataContext);
@@ -13,17 +14,18 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // ← Add kiya
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       await axios.post(
-        serverUrl + "/api/user/login", // ← /api/user → /api/auth
+        serverUrl + "/api/user/login",
         { email, password },
         { withCredentials: true }
       );
-      await getCurrentUser(); // ← await lagao
+      await getCurrentUser();
       navigate("/");
     } catch (error) {
       setError(error.response?.data?.message || "Error logging in");
@@ -63,14 +65,24 @@ const Login = () => {
             className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white"
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white"
-            required
-          />
+
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"} 
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className="p-2 rounded bg-zinc-700 text-white outline-none placeholder:text-white w-full pr-10"
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white cursor-pointer text-xl"
+            >
+              {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+            </span>
+          </div>
+
           <button
             type="submit"
             disabled={loading}
