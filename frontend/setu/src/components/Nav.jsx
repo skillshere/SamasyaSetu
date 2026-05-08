@@ -11,7 +11,6 @@ const Nav = () => {
   const { serverUrl } = useContext(authDataContext);
   const { userData, setUserData } = useContext(userDataContext);
   const navigate = useNavigate();
-  console.log(userData)
   const logout = async () => {
     try {
       await axios.post(

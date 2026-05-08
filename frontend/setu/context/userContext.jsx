@@ -16,7 +16,6 @@ const UserContext = ({ children }) => {
           'Content-Type': 'application/json',
         }
       });
-      console.log('getCurrentUser response:', res.data);
       setUserData(res.data);
     } catch (error) {
       setUserData(null);
