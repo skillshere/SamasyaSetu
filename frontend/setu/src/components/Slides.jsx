@@ -30,7 +30,7 @@ const slides = [
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
-  const navigate = useNavigate(); // ← Andar move kiya
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -45,7 +45,7 @@ const Slider = () => {
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: '320px' }} // ← Mobile ke liye chota kiya
+      style={{ height: '320px' }}
     >
 
       {/* Background Image */}
@@ -61,20 +61,20 @@ const Slider = () => {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-      {/* Content — padding km kiya mobile ke liye */}
-      <div className="absolute inset-0 flex flex-col justify-center px-5 md:px-20 max-w-2xl">
+      {/* Content — buttons ke liye padding */}
+      <div className="absolute inset-0 flex flex-col justify-center pl-12 pr-14 md:pl-20 md:pr-24 max-w-2xl">
 
         {/* Badge */}
         <span className="inline-block bg-[#0f6e56] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 w-fit tracking-wide">
           {slides[current].badge}
         </span>
 
-        {/* Title — size chota mobile pe */}
+        {/* Title */}
         <h2 className="text-white text-2xl md:text-5xl font-bold leading-tight mb-2 drop-shadow-lg">
           {slides[current].title}
         </h2>
 
-        {/* Description — mobile pe chota */}
+        {/* Description */}
         <p className="text-zinc-200 text-sm md:text-lg leading-relaxed mb-4 max-w-md">
           {slides[current].desc}
         </p>
@@ -99,7 +99,7 @@ const Slider = () => {
       {/* Prev Button */}
       <button
         onClick={prev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm z-10"
       >
         ‹
       </button>
@@ -107,13 +107,13 @@ const Slider = () => {
       {/* Next Button */}
       <button
         onClick={next}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm"
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 hover:bg-white/30 border border-white/20 text-white rounded-full flex items-center justify-center text-lg transition-all backdrop-blur-sm z-10"
       >
         ›
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-4 left-5 md:left-20 flex gap-2 items-center">
+      <div className="absolute bottom-4 left-12 md:left-20 flex gap-2 items-center">
         {slides.map((_, i) => (
           <button
             key={i}
