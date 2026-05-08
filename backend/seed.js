@@ -54,7 +54,6 @@ const seedAdmins = async () => {
     console.log('MongoDB connected');
 
     for (const admin of admins) {
-      // Pehle check karo — already exist karta hai?
       const exists = await User.findOne({ email: admin.email });
       if (exists) {
         console.log(`Already exists: ${admin.email}`);
