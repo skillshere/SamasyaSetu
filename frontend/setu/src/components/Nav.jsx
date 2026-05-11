@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/Logo.png";
+import logo from "../assets/samasya_setu_icon_only.svg";
 import { MdOutlineMenu } from "react-icons/md";
 import { authDataContext } from "../../context/authContext";
 import { userDataContext } from "../../context/userContext";
@@ -33,7 +33,7 @@ const Nav = () => {
           onClick={() => navigate("/")}
         >
           <img src={logo} alt="logo" className="w-20 h-14" />
-          <h1 className=" font-playwrite text-xl font-bold text-white bg-[#0f6e56]">
+          <h1 className="text-xl font-bold text-white bg-[#0f6e56]">
             SamasyaSetu
           </h1>
         </div>
