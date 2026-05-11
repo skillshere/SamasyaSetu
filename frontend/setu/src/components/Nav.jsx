@@ -29,7 +29,7 @@ const Nav = () => {
     <div className="bg-[#0f6e56] shadow-sm w-full relative">
       <div className="flex justify-between items-center px-4 py-1">
         <div
-          className="flex items-center gap-2 cursor-pointer"
+          className="flex items-center gap-1 cursor-pointer"
           onClick={() => navigate("/")}
         >
           <img src={logo} alt="logo" className="w-20 h-14" />
