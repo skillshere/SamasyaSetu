@@ -88,7 +88,6 @@ const MyProblem = () => {
           </button>
         </div>
 
-        {/* Stats Cards */}
         <div className="grid grid-cols-4 gap-3 mb-5">
           {[
             { key: 'all',         label: 'Total',       bg: '#E1F5EE', border: '#0f6e56',  num: '#085041', text: '#0F6E56', active: true  },
@@ -113,7 +112,6 @@ const MyProblem = () => {
           ))}
         </div>
 
-        {/* Filter Pills */}
         <div className="flex gap-2 mb-5 flex-wrap">
           {[
             { key: 'all',         label: 'All Issues'  },
@@ -135,7 +133,7 @@ const MyProblem = () => {
           ))}
         </div>
 
-        {/* Empty State */}
+  
         {filtered.length === 0 ? (
           <div className="bg-white border border-[#b2ddd5] rounded-2xl flex flex-col items-center justify-center py-20 gap-4">
             <div className="w-14 h-14 rounded-full bg-[#e1f5ee] flex items-center justify-center">

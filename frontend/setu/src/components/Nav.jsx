@@ -47,8 +47,6 @@ const Nav = () => {
 
       {showMenu && (
         <ul className="w-50 flex flex-col gap-3 absolute top-16 right-8 bg-emerald-900 p-5 rounded-lg z-50">
-          
-          {/* Profile — sabko dikhao */}
           <li>
             <Link
               to="/profile"
@@ -62,7 +60,6 @@ const Nav = () => {
             </Link>
           </li>
 
-          {/* Report + — sirf user ko dikhao, admin ko nahi */}
           {userData && userData.role !== "admin" && (
             <li className="border-t border-slate-500 pt-3">
               <Link
@@ -78,7 +75,6 @@ const Nav = () => {
             </li>
           )}
 
-          {/* My Issue — sirf user ko dikhao, admin ko nahi */}
           {userData && userData.role !== "admin" && (
             <li className="border-t border-slate-500 pt-3">
               <Link
@@ -94,7 +90,6 @@ const Nav = () => {
             </li>
           )}
 
-          {/* About — sabko dikhao */}
           <li className="border-t border-slate-500 pt-3">
             <Link
               to="/about"
@@ -108,7 +103,7 @@ const Nav = () => {
             </Link>
           </li>
 
-          {/* Admin Panel — sirf admin ko dikhao */}
+          
           {userData?.role === "admin" && (
             <li className="border-t border-slate-500 pt-3">
               <Link
@@ -121,7 +116,7 @@ const Nav = () => {
             </li>
           )}
 
-          {/* Login — sirf tab dikhao jab logged out ho */}
+      
           {!userData && (
             <li className="border-t border-slate-500 pt-3">
               <button
@@ -136,7 +131,6 @@ const Nav = () => {
             </li>
           )}
 
-          {/* Logout — sirf tab dikhao jab logged in ho */}
           {userData && (
             <li className="border-t border-slate-500 pt-3">
               <button
